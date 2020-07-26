@@ -1,0 +1,243 @@
+<!DOCTYPE html> 
+<html> 
+      
+<head> 
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+  <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="../static/bootstrap/js/jquery.min.js"></script>
+	<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/main.css">
+  <script src="../static/js/Dataset.js"></script>
+  <script src="../static/js/utils.js"></script>
+
+<!--
+	<script>
+	(function(a, s, y, n, c, h, i, d, e) {
+		s.className += ' ' + y;
+		h.start = 1 * new Date;
+		h.end = i = function() { s.className = s.className.replace(RegExp(' ?' + y), '') };
+		(a[n] = a[n] || []).hide = h;
+		setTimeout(function() {
+			i();
+			h.end = null
+		}, c);
+		h.timeout = c;
+	})(window, document.documentElement, 'async-hide', 'dataLayer', 4000, { 'GTM-5HMQSTW': true });
+	</script>
+-->
+	<script>
+//	(function(i, s, o, g, r, a, m) {
+//		i['GoogleAnalyticsObject'] = r;
+//		i[r] = i[r] || function() {
+//			(i[r].q = i[r].q || []).push(arguments)
+//		}, i[r].l = 1 * new Date();
+//		a = s.createElement(o),
+//		m = s.getElementsByTagName(o)[0];
+//		a.async = 1;
+//		a.src = g;
+//		m.parentNode.insertBefore(a, m)
+//	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+//
+//	ga('create', 'UA-85207771-4', 'auto');
+//	ga('send', 'pageview');
+	</script>
+<!--	<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+	<!-- <script>
+	     (adsbygoogle = window.adsbygoogle || []).push({
+		  google_ad_client: "ca-pub-1646946517270170",
+		  enable_page_level_ads: true
+	     });
+  </script> -->
+  
+  <title> 
+      ML Playground
+  </title> 
+
+</head> 
+  
+<body> 
+    <header class="header">
+      ML Playground
+    </header>
+    
+    <div class="container">
+      
+      <!-- canvas and datagen buttons -->
+      <div class="row">
+        
+        <div id="canvasDiv" class="col-sm-12 col-md-7">
+            <canvas id="canvas" width="500" height="500">
+            </canvas>
+        </div>
+      
+        <div class="col-sm-12 col-md-3" id="data-options">
+          
+          <div class="form " id='data-class_div'>
+
+            <h3>Create Datapoints</h3>
+            
+            <hr>
+            
+            <div class="inputGroup">
+              <input id="class0" name="data-class" type="radio" value=0 onclick=currentClass() checked/>
+              <label for="class0">Class 0</label>
+            </div>
+            <div class="inputGroup">
+              <input id="class1" name="data-class" type="radio" value=1 onclick=currentClass() />
+              <label for="class1">Class 1</label>
+            </div>
+            
+          </div>
+          
+          <hr>
+          
+          <div class="multi-button">
+            <button class="type1" id='clearAll' onclick=clearAll(canvasElem)>Clear All</button>
+            <button class="genRandom" id='genRandom' onclick=dataGen()>Generate Random</button>
+            <button class="type1" onclick=trainClassifier()>TRAIN</button>
+          </div>
+          
+        </div> 
+        
+      </div>
+      <!-- canvas and datagen buttons -->
+
+      <br>
+      
+      <!-- select algo and params divs starts-->
+      <div id="params_div">
+        <div style="place-items: center; padding: 4px;">
+          <div class="slidecontainer">
+            <p><b>Iterations:</b><i> Maximum number of iterations</i></p>
+            <input type="number" name="params" min="30" max="30000" value=100 id="max_iter">
+            <hr>
+          </div>
+
+          <div class="slidecontainer">
+            <p><b>Learning Rate:</b><i> The step size at each iteration while moving towards minima</i></p>
+            <input type="range" name="params" min="0" max="6" value="4" step="1" id="lrate">
+            <div id="lrate_out"></div>
+            <hr>
+          </div>
+
+          <div class="slidecontainer">
+            <p><b>C (L2 regularization)</b>:<i> Inverse of regularization strength</i></p>
+            <input type="range" name="params" min="0" max="6" value="3" step="1" id="C">
+            <div id="C_out"></div>
+            <hr>
+          </div>
+
+        </div> 
+      </div>
+        
+      
+      <!-- select algo and params divs ends-->
+      
+      <!-- info divs ends-->
+      <div class="info col-sm-12 col-md-12">
+        <section id="info_LR">
+          <h1>Logistic Regression</h1>
+          <p>Logistic Regression is one of the most common machine learning algorithms for classification. 
+            It a statistical model that uses a logistic function to model a binary dependent variable. 
+            In essence, it predicts the probability of an observation belonging to a certain class or label.</p>
+          <details>
+            <summary><h3>Assumptions</h3></summary>
+            <ul>
+              <li>The labels are almost linearly separable.</li>
+              <li>The observations have to be independent of each other.</li>
+              <li>There is minimal or no multicollinearity among the independent variables.</li>
+              <li>The independent variables are linearly related to the log odds.</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary><h3>Advantages</h3></summary>
+            <ul>
+              <li>Logistic Regression performs well when the dataset is linearly separable.</li>
+              <li>It does not require too many computational resources.</li>
+              <li>It is suitable for problems that have low latency constraints.</li>
+            </ul>
+          </details>
+          
+          <details>
+            <summary><h3>Disadvantages</h3></summary>
+            <ul>
+              <li>Logistic Regression assumes that there is linearity between the dependent variable 
+                and the independent variables. In the real world, the data is rarely linearly separable</li>
+              <li>It is highly reliant on proper presentation of the data.</li>
+              <li>It is also not one of the most powerful algorithms out there. It can be easily outperformed 
+                by more complex ones.</li>
+            </ul>
+          </details>
+
+          <details>
+            <summary><h3>Learn More:</h3></summary>
+            <ul>
+              <li><a href="https://www.coursera.org/learn/machine-learning">
+              https://www.coursera.org/learn/machine-learning
+              </a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Logistic_regression">
+              https://en.wikipedia.org/wiki/Logistic_regression
+              </a></li>
+              <li><a href="https://en.wikipedia.org/wiki/Regularization_(mathematics)">
+              https://www.coursera.org/learn/machine-learning
+              </a></li>
+            </ul>
+          </details>
+        </section>
+      <!-- info divs ends-->
+ 
+    </div>
+
+    <hr>
+    
+    <div class="col-sm-12 col-md-12 footer">
+      <!--   <h1>CSS3 Social <span>bu</span>ttons vol.2</h1> -->
+        
+        <div class="effect thurio">
+          
+          <div class="buttons">
+      
+            <a href="https://arya46.github.io/" class="dribbble" title="Portfolio"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/tulrose/" class="in" title="Linked In"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            <a href="https://github.com/arya46/play-with-" class="dribbble" title="Portfolio"><i class="fa fa-github" aria-hidden="true"></i></a>
+          </div>
+          <h3>Made with <i class="fa fa-heart-o" style="color:red"></i> by TULROSE DEORI</h3>
+        </div>
+         
+      </div>
+</body> 
+
+
+  
+<script type="text/javascript"> 
+    
+  console.log('All Ready')
+      
+  let dataset = new Dataset()
+  const canvasElem = document.querySelector("canvas"); 
+  let c_class = 0;
+  const color_dict = {
+    0: "#6b76e8",
+    1: "#c775d1"
+  };
+
+  function currentClass(){
+    let cc = document.querySelector('input[name="data-class"]:checked').value;
+    c_class = cc;
+  };
+
+  canvasElem.addEventListener("mousedown", function(e) { 
+      let [x, y] = getCoordinates(canvasElem);
+      drawCoordinates(canvasElem, x, y, 3.5, c_class, verbose=true);
+      dataset.addOne(x, y, Number(c_class));
+  });
+
+</script> 
+
+<script src="../static/js/params.js"></script>
+<script src="../static/js/controllers.js"></script>
+
+</html> 
