@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template, url_for
 from flask_cors import CORS
 import json
-# from sklearn.linear_model import LogisticRegression
 import numpy as np
 
 from utils.helper_functions import generate_random_data, logRegClassifier, standardize_data

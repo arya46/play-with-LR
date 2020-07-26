@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.special import expit
-import matplotlib.pyplot as plt
 
 class LogisticRegression(object):
     """

@@ -1,8 +1,6 @@
 from sklearn.datasets import make_classification
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib import colors as cma
-# from sklearn.linear_model import LogisticRegression
+
 from utils.models.logreg_classifier import LogisticRegression
 from utils.configs import *
 
