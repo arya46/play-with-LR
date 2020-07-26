@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, url_for
 from flask_cors import CORS
 import json
 import numpy as np
-
+import os
 from utils.helper_functions import generate_random_data, logRegClassifier, standardize_data
 
 app = Flask(__name__)
@@ -39,5 +39,6 @@ class NumpyEncoder(json.JSONEncoder):
 
 if __name__ == "__main__":
 
-    # RUNNNING FLASK APP    
-    app.run(debug=True, host = '0.0.0.0', port=8080)
+    # RUNNNING FLASK APP   
+    port = int(os.environ.get("PORT", 8080)) 
+    app.run(debug=True, host = '0.0.0.0', port=port)
