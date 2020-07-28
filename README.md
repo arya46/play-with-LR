@@ -6,7 +6,7 @@
 - [What is Logistic Regression?](#what-is-logistic-regression)
 - [Technical Aspect](#technical-aspect)
 - [Usage](#usage)
-- [Run the app locally](#run-the-app-locally]
+- [Run the app locally](#run-the-app-locally)
 - [Project Directory Structure](#project-directory-structure)
 - [Technologies Used](#technologies-used)
 - [Contributions / Bug](#contributions--bug)
