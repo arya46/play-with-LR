@@ -6,6 +6,7 @@
 - [What is Logistic Regression?](#what-is-logistic-regression)
 - [Technical Aspect](#technical-aspect)
 - [Usage](#usage)
+- [Run the app locally](#run-the-app-locally]
 - [Project Directory Structure](#project-directory-structure)
 - [Technologies Used](#technologies-used)
 - [Contributions / Bug](#contributions--bug)
@@ -73,6 +74,26 @@ __Results on a dummy dataset__:
 ├── main.py
 └── requirements.txt
 ```
+## Run the app locally
+First, clone this project to your local machine:
+```
+git clone https://github.com/arya46/play-with-LR.git
+
+# change the working directory
+cd play-with-LR
+```
+
+Then install the required packages and libraries. Run the following command:
+```
+pip install -r requirements.txt
+```
+
+Everything is set now. Use the following command to launch the app:
+
+```
+python main.py
+```
+The app will run on `http://localhost:8080/` in the browser.
 
 ## Technologies Used
 - Programming Language: Python
